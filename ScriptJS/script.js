@@ -23,3 +23,6 @@ function retornoApiQuizz(resposta){
     }
 }
 
+function buttomCriar(){
+    window.location.replace("desktop8.html")
+} 
