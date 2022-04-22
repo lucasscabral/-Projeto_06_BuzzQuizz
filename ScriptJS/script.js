@@ -82,3 +82,9 @@ function buscarIdQuizz(resposta){
      }
 }
   
+function buttomCriar(){
+    window.location.replace("desktop8.html")
+} 
+function prosseguir(){
+    window.location.replace("desktop8.html")
+}

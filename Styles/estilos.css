@@ -1,102 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-body{
-    background: #FAFAFA; 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+body {
+  background: #fafafa;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    height: 69px;
-    width: 100%;
-    background-color: #EC362D;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 69px;
+  width: 100%;
+  background-color: #ec362d;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
-h1{
-    font-family: 'Roboto', sans-serif;
-    font-size: 37px;
-    color: #FFFFFF;
-}
-
-main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 37px;
+  color: #ffffff;
 }
 
-.box-criar-quizz{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    width: 1051px;
-    height: 181px;
-    border: 1px dashed #D5D5D5;
-    box-sizing: border-box;
-    border-radius: 5px;
-    margin-top: 120px;
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.info-criar-quizz{
-    display: flex;
-    align-items: center;
-    text-align: center;   
-    color: #B9B9B9;
-    font-size: 20px;
-    width: 250px;
-    height: 107px;
+.box-criar-quizz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  width: 1051px;
+  height: 181px;
+  border: 1px dashed #d5d5d5;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 120px;
 }
 
-.btn-criar-quizz{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #EC362D;
-    width: 151px;
-    height: 40px;
-    border: 1px dashed #EC362D;
-    box-sizing: border-box;
-    border-radius: 50px;
-    cursor: pointer;
+.info-criar-quizz {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #b9b9b9;
+  font-size: 20px;
+  width: 250px;
+  height: 107px;
 }
 
+.btn-criar-quizz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ec362d;
+  width: 151px;
+  height: 40px;
+  border: 1px dashed #ec362d;
+  box-sizing: border-box;
+  border-radius: 50px;
+  cursor: pointer;
+}
 
 /*TODOS OS QUIZZES DA API*/
 
-h2{
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color:#000000;
+h2 {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: #000000;
 }
-.titulo-todos-quizzes{
-    display: flex;
-    width: 1051px;
-    margin-top: 70px;
-    margin-bottom: 12px;
-}
-
-.todos-quizzes-api{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 1051px;
+.titulo-todos-quizzes {
+  display: flex;
+  width: 1051px;
+  margin-top: 70px;
+  margin-bottom: 12px;
 }
 
-.quizzes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    width: 340px;
-    height: 181px; 
-    border-radius: 5px; 
-    cursor: pointer;
+.todos-quizzes-api {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1051px;
+}
+
+.quizzes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 340px;
+  height: 181px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .imagem-quizz{
     position: relative;
@@ -104,11 +103,11 @@ h2{
     flex-wrap: wrap;
     word-wrap: break-word;
 }
-.imagem-quizz > img{
-    width: 340px;
-    height: 181px;
-    -webkit-mask-image: linear-gradient(to top, transparent 25%, black 50%);
-    border-radius: 5px;
+.imagem-quizz > img {
+  width: 340px;
+  height: 181px;
+  -webkit-mask-image: linear-gradient(to top, transparent 25%, black 50%);
+  border-radius: 5px;
 }
 .imagem-quizz > span{
     position: absolute;
@@ -120,38 +119,74 @@ h2{
     bottom: 15px;
 }
 
-.escondido{
-    display: none;
+.escondido {
+  display: none;
 }
 
 /*QUIZZES CRIADO PELO USUARIO*/
-.todos-quizzes-usuario{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 1051px;
+.todos-quizzes-usuario {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1051px;
 }
-.quizzes-criado-pelo-usuario{
-    margin-top: 100px;
-}
-
-.titulo-todos-quizzes-usuario{
-    display: flex;
-    margin-bottom: 12px;
-    width: 1051px;
-    margin-top: 70px;
-    margin-bottom: 12px;
-}
-.icone-criar-quizz{
-    box-sizing: border-box;
-    color:#EC362D;
-    font-size: 25px;
-    margin-left: 15px;
-}
-.icone-criar-quizz:focus{
-    outline: none;
+.quizzes-criado-pelo-usuario {
+  margin-top: 100px;
 }
 
+.titulo-todos-quizzes-usuario {
+  display: flex;
+  margin-bottom: 12px;
+  width: 1051px;
+  margin-top: 70px;
+  margin-bottom: 12px;
+}
+.icone-criar-quizz {
+  box-sizing: border-box;
+  color: #ec362d;
+  font-size: 25px;
+  margin-left: 15px;
+}
+.icone-criar-quizz:focus {
+  outline: none;
+}
+
+/* desktop8*/
+.container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.subtitulo {
+  padding-top: 100px;
+  align-self: center;
+}
+.informacoesBasicas {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  justify-content: center;
+  align-content: center;
+  border-radius: 10px;
+  
+}
+.texto{
+    align-self: center;
+    width: 30%;
+    height: 20px;
+    margin-top: 8px;
+    padding: 5px;
+}
+.prosseguir{
+    background-color: #ec362d;
+    width: 20%;
+height: 38px;
+align-self: center;
+border-radius: 10px;
+text-align: center;
+margin-top: 60px;
+}
 
 /*TELA DAS QUESTOES DO QUIZZ SELECIONADO*/
 .box-questoes{
@@ -298,3 +333,13 @@ h2{
     color: #818181;
     cursor: pointer;
 }
+h3{
+    color: #FFF5F4;
+    margin-top: 8px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 15px
+}
+
+/*AJEITAR A PARTE DE ESCONDER E APARECER OS QUIZZES DO USUARIO */
