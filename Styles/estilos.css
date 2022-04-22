@@ -97,14 +97,11 @@ h2 {
   border-radius: 5px;
   cursor: pointer;
 }
-.imagem-quizz {
-  position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(0, 0, 0, 0.5) 64.58%,
-    #000000 100%
-  );
+.imagem-quizz{
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+    flex-wrap: wrap;
+    word-wrap: break-word;
 }
 .imagem-quizz > img {
   width: 340px;
@@ -112,13 +109,14 @@ h2 {
   -webkit-mask-image: linear-gradient(to top, transparent 25%, black 50%);
   border-radius: 5px;
 }
-.imagem-quizz > span {
-  position: absolute;
-  font-family: "Roboto", sans-serif;
-  font-size: 19px;
-  color: #ffffff;
-  left: 15px;
-  bottom: 15px;
+.imagem-quizz > span{
+    position: absolute;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    color: #FFFFFF;
+    left: 15px;
+    bottom: 15px;
 }
 
 .escondido {
@@ -197,6 +195,159 @@ h3 {
   font-style: normal;
   font-weight: 100;
   font-size: 15px;
+}
+/*TELA DAS QUESTOES DO QUIZZ SELECIONADO*/
+.box-questoes{
+    width: 100%;
+}
+.titulo-quizz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+    font-size: 30px;
+    margin-top: 69px;
+    width: 100%;
+    height: 150px;
+    opacity: 60%;
+    position: relative;
+}
+.titulo-quizz img{
+    width: 100%;
+    height: 150px;
+}
+.titulo-quizz span{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-quetoes-quizzes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box-perguntas-respostas{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    width: 759px;
+    height: 676px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.box-perguntas-respostas img{
+    width: 329.91px;
+    height: 175.2px;
+}
+.titulo-pergunta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 688.16px;
+    height: 137.99px;   
+    background-color: #434CA0;
+}
+.titulo-pergunta span{
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+.box-respostas{
+    display: flex;
+    flex-direction: column;
+}
+/*ESBRANQUIÇAR AS OUTRAS ALTERNATIVAS*/
+.box-respostas-esbranquicado{
+    display: flex;
+    flex-direction: column;
+    opacity: 0.3;
+}
+
+.box-respostas img{
+    margin-bottom: 10px;
+}
+.box-respostas span{
+    font-size: 15px;
+    color: #000000;
+}
+
+.box-resultado-quizz{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    width: 759px;
+    height: 430px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.box-resultado-quizz img{
+    width: 364px;
+    height: 273px;
+}
+.titulo-resultado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:  23px;
+    width: 727px;
+    height: 99px;
+    color: #FFFFFF;
+    background-color: #EC362D;
+}
+.conteudo-resultado{
+    display: flex;
+}
+.box-resultado-img{
+    width: 364px;
+    height: 273px;
+}
+.box-descricao-resultado{
+    width: 328px;
+    font-size: 19px;
+    margin-left: 20px;
+}
+
+.bnt-reiniciar-quizz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF5F4;
+    font-size: 21px;
+    width: 260.38px;
+    height: 52px;
+    background: #EC362D;
+    border-radius: 15px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+.bnt-voltar-home {
+    margin-bottom: 70px;
+}
+.bnt-voltar-home span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    color: #818181;
+    cursor: pointer;
+}
+h3{
+    color: #FFF5F4;
+    margin-top: 8px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 15px
 }
 
 /*AJEITAR A PARTE DE ESCONDER E APARECER OS QUIZZES DO USUARIO */
