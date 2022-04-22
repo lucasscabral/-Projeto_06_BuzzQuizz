@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="/Styles/reset.css" />
     <link rel="stylesheet" href="/Styles/estilos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="ScriptJS/script.js"></script>
 
     <title>BuzzQuizz</title>
   </head>
@@ -19,25 +21,33 @@
         <h2>Comece pelo começo</h2>
       </div>
       <div class="informacoesBasicas">
-        <input class="texto" type="text" placeholder="Título do seu quizz" />
         <input
+          id="titulo"
+          class="texto"
+          type="text"
+          placeholder="Título do seu quizz"
+        />
+        <input
+          id="Url"
           class="texto"
           type="text"
           placeholder="URL da imagem do seu quizz"
         />
         <input
+          id="perguntas"
           class="texto"
           type="text"
           placeholder="Quantidade de perguntas do quizz"
         />
         <input
+          id="niveis"
           class="texto"
           type="text"
           placeholder="Quantidade de níveis do quizz"
         />
       </div>
       <div class="prosseguir" onclick="prosseguir()">
-          <h3>Proseguir pra criar perguntas</h3>
+        <h3>Proseguir pra criar perguntas</h3>
       </div>
     </div>
   </body>

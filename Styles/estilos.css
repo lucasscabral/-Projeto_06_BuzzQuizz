@@ -171,32 +171,32 @@ h2 {
   justify-content: center;
   align-content: center;
   border-radius: 10px;
-  
 }
-.texto{
-    align-self: center;
-    width: 30%;
-    height: 20px;
-    margin-top: 8px;
-    padding: 5px;
+.texto {
+  align-self: center;
+  width: 30%;
+  height: 20px;
+  margin-top: 8px;
+  padding: 5px;
+  color: #bababa;
 }
-.prosseguir{
-    background-color: #ec362d;
-    width: 20%;
-height: 38px;
-align-self: center;
-border-radius: 10px;
-text-align: center;
-margin-top: 60px;
+.prosseguir {
+  background-color: #ec362d;
+  width: 20%;
+  height: 38px;
+  align-self: center;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 60px;
 }
 
-h3{
-    color: #FFF5F4;
-    margin-top: 8px;
-    font-family: 'Roboto';
-font-style: normal;
-font-weight: 100;
-font-size: 15px
+h3 {
+  color: #fff5f4;
+  margin-top: 8px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100;
+  font-size: 15px;
 }
 
 /*AJEITAR A PARTE DE ESCONDER E APARECER OS QUIZZES DO USUARIO */
