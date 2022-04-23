@@ -254,11 +254,15 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    
     width: 688.16px;
     height: 137.99px;   
     background-color: #434CA0;
 }
 .titulo-pergunta span{
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
     font-size: 23px;
     color: #FFFFFF;
 }
@@ -269,14 +273,17 @@ h3 {
   align-items: center;
   flex-wrap: wrap;
   width: 688.16px;
-  /*background-color: red;*/
 }
 
 
 .box-respostas{
     display: flex;
+    word-wrap: break-word;
     flex-direction: column;
+    width: 331.94px;
     margin-bottom: 20px;
+    /*background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);*/
+    cursor: pointer;
 }
 /*ESBRANQUIÇAR AS OUTRAS ALTERNATIVAS*/
 .box-respostas-esbranquicado{
@@ -284,8 +291,9 @@ h3 {
     flex-direction: column;
     opacity: 0.3;
 }
-
+/*** *************************** ***/
 .box-respostas img{
+   /* -webkit-mask-image: linear-gradient(to top, transparent 5%, black 25%);*/
     width: 329.91px;
     height: 175.2px;
     margin-bottom: 10px;

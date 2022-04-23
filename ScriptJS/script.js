@@ -89,17 +89,27 @@ function entarQuizzApi(elemento) {
 let quizzEscolhido;
 
 
+
+function embaralharRespostas() { 
+  return Math.random() - 0.5; 
+}
+
+
 function buscarIdQuizz(resposta) {
   quizzEscolhido = resposta.data;
-  console.log(quizzEscolhido.questions);
+  console.log(quizzEscolhido);
+
+  /*for(let y = 0; y = quizzEscolhido.questions[y].answers.length;y++){
+    console.log(quizzEscolhido.questions[y].answers[y]);
+  }*/
+
 
   let questoesQuizzes = document.querySelector(".box-questoes");
-  //let respostaQuizz = document.querySelector(".box-perguntas-respostas");
   let questoesMontadas = "";
 
   questoesQuizzes.innerHTML = "";
   console.log(questoesQuizzes);
-  questoesMontadas = ` <!-- <div class="box-questoes">-->
+  questoesMontadas = ` 
                                   <div class="titulo-quizz">
                                         <img src="${quizzEscolhido.image}" alt="">
                                         <span>${quizzEscolhido.title}</span>
@@ -108,20 +118,24 @@ function buscarIdQuizz(resposta) {
                                 `;
 
   for (let i = 0; i < quizzEscolhido.questions.length; i++) {
+    
     console.log(quizzEscolhido.questions[i].answers);
     questoesMontadas += `
                                       
                                               <div class="box-perguntas-respostas">
                                                   <div class="titulo-pergunta">
-                                                      <span>${quizzEscolhido.questions[i].title}</span>
+                                                      <span style="color : ${quizzEscolhido.questions[i].color}">
+                                                         ${quizzEscolhido.questions[i].title}
+                                                      </span>
                                                   </div>
                                                   <div class="todas-respostas">
                                            `;
-        
+
         for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++) {
-          console.log( quizzEscolhido.questions[i].answers.length);
+          quizzEscolhido.questions[i].answers.sort(embaralharRespostas);
+          console.log(quizzEscolhido.questions[i].answers[x]);
           questoesMontadas += `
-                                            <div class="box-respostas">
+                                            <div class="box-respostas" onclick="selecionarResposta(this)">
                                                 <img src="${quizzEscolhido.questions[i].answers[x].image}" alt="">
                                                 <span>${quizzEscolhido.questions[i].answers[x].text}</span>
                                             </div>
@@ -130,20 +144,27 @@ function buscarIdQuizz(resposta) {
         }
         questoesMontadas += `
                                        </div> 
-                                   </div> 
-                                  
-                                   `;
+                                   </div>     
+                                  `;
   }
   questoesMontadas += `
-  <!--  </div>-->
                               </div> 
                                   `;
+
    questoesQuizzes.innerHTML = questoesMontadas;                                
 }
 
 
 
-function renderizarRespostas(){
+function selecionarResposta(elemento){
+    console.log("OLAAAAA!"); 
+  /*let respostas = document.querySelector(".box-respostas")*/
+  let respostaSelecionada = elemento.classList.add("box-respostas-esbranquicado");
+  /*respostaSelecionada = elemento.classList*/
+ /* if(respostas){
+
+  }*/
+
 
 }
  
