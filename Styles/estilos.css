@@ -136,11 +136,13 @@ h2 {
 
 .titulo-todos-quizzes-usuario {
   display: flex;
+  align-items: center;
   margin-bottom: 12px;
   width: 1051px;
   margin-top: 70px;
   margin-bottom: 12px;
 }
+
 .icone-criar-quizz {
   box-sizing: border-box;
   color: #ec362d;
@@ -223,7 +225,9 @@ h3 {
     justify-content: center;
     align-items: center;
 }
-.box-quetoes-quizzes{
+
+
+.box-questoes-quizzes{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,11 +235,11 @@ h3 {
 }
 
 .box-perguntas-respostas{
-    font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    font-family: 'Roboto', sans-serif;
     margin-top: 80px;
     width: 759px;
     height: 676px;
@@ -259,9 +263,20 @@ h3 {
     color: #FFFFFF;
 }
 
+.todas-respostas{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 688.16px;
+  /*background-color: red;*/
+}
+
+
 .box-respostas{
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 /*ESBRANQUIÇAR AS OUTRAS ALTERNATIVAS*/
 .box-respostas-esbranquicado{
@@ -271,6 +286,8 @@ h3 {
 }
 
 .box-respostas img{
+    width: 329.91px;
+    height: 175.2px;
     margin-bottom: 10px;
 }
 .box-respostas span{

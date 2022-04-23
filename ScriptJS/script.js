@@ -86,46 +86,128 @@ function entarQuizzApi(elemento) {
   buscarUmQuizz.then(buscarIdQuizz);
 }
 
+let quizzEscolhido;
+
+
 function buscarIdQuizz(resposta) {
-  let quizzEscolhido = resposta.data;
-  let objetoQuizz = {
-    id: quizzEscolhido.id,
-    title: quizzEscolhido.title,
-    image: quizzEscolhido.image,
-    questions: quizzEscolhido.questions,
-    levels: quizzEscolhido.levels,
-  };
-  //console.log(objetoQuizz.questions[0].title);
-  console.log(objetoQuizz.questions[0].answers[1]);
+  quizzEscolhido = resposta.data;
+  console.log(quizzEscolhido.questions);
 
   let questoesQuizzes = document.querySelector(".box-questoes");
+  //let respostaQuizz = document.querySelector(".box-perguntas-respostas");
+  let questoesMontadas = "";
+
+  questoesQuizzes.innerHTML = "";
   console.log(questoesQuizzes);
-  questoesQuizzes.innerHTML = `  <div class="titulo-quizz">
-                                        <img src="${objetoQuizz.image}" alt="">
-                                        <span>${objetoQuizz.title}</span>
-                                   </div>
+  questoesMontadas = ` <!-- <div class="box-questoes">-->
+                                  <div class="titulo-quizz">
+                                        <img src="${quizzEscolhido.image}" alt="">
+                                        <span>${quizzEscolhido.title}</span>
+                                  </div>
+                                  <div class="box-questoes-quizzes">
                                 `;
 
-  for (let i = 0; i < objetoQuizz.questions.length; i++) {
-    console.log(objetoQuizz.questions[i]);
-    questoesQuizzes.innerHTML += `<div class="box-quetoes-quizzes">
-                                            <div class="box-perguntas-respostas">
-                                                <div class="titulo-pergunta">
-                                                    <span>${objetoQuizz.questions[i].title}</span>
-                                                </div>
-                                            </div>  
-                                    </div> `;
+  for (let i = 0; i < quizzEscolhido.questions.length; i++) {
+    console.log(quizzEscolhido.questions[i].answers);
+    questoesMontadas += `
+                                      
+                                              <div class="box-perguntas-respostas">
+                                                  <div class="titulo-pergunta">
+                                                      <span>${quizzEscolhido.questions[i].title}</span>
+                                                  </div>
+                                                  <div class="todas-respostas">
+                                           `;
+        
+        for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++) {
+          console.log( quizzEscolhido.questions[i].answers.length);
+          questoesMontadas += `
+                                            <div class="box-respostas">
+                                                <img src="${quizzEscolhido.questions[i].answers[x].image}" alt="">
+                                                <span>${quizzEscolhido.questions[i].answers[x].text}</span>
+                                            </div>
+                                               
+                                            `;
+        }
+        questoesMontadas += `
+                                       </div> 
+                                   </div> 
+                                  
+                                   `;
   }
+  questoesMontadas += `
+  <!--  </div>-->
+                              </div> 
+                                  `;
+   questoesQuizzes.innerHTML = questoesMontadas;                                
+}
 
-  for (let i = 0; i < objetoQuizz.questions.length; i++) {
-    questoesQuizzes.innerHTML += `<div class="box-quetoes-quizzes">
+
+
+function renderizarRespostas(){
+
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* 
+ 
+       questoesQuizzes.innerHTML += `<div class="todas-respostas">
+                                            <div class="box-respostas">
+                                                <img src="${objetoQuizz.questions[i].answers[x].image}" alt="">
+                                                <span>${objetoQuizz.questions[i].answers[x].text}</span>
+                                            </div>
+                                        </div>        
+                                            `;
+        }
+        questoesQuizzes.innerHTML += `
+                                     
+                                   </div>
+                                </div> 
+                                   `;
+ 
+ 
+ 
+ 
+ for (let i = 0; i < objetoQuizz.questions.answers[i].length; i++) {
+    boxQuestao.innerHTML += `  <div class="box-respostas">
+                                    <img src="${objetoQuizz.questions.answers[i].image}" alt="">
+                                    <span>${objetoQuizz.questions.answers[i].text}</span>
+                                </div>    `;
+    console.log(objetoQuizz.questions.answers[i]);
+    // console.log(objetoQuizz.questions[i].answers.length);
+  }*/
+
+
+
+/*`<div class="box-quetoes-quizzes">
                                               <div class="box-perguntas-respostas">  
                                                     <div class="box-respostas">
                                                             <img src="${objetoQuizz.questions[i].answers[i].image}" alt="">
                                                             <span>${objetoQuizz.questions[i].answers[i].text}</span>
                                                     </div>                             
                                               </div>
-                                      </div>`;
-    // console.log(objetoQuizz.questions[i].answers.length);
-  }
-}
+                                      </div>`; */
