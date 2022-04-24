@@ -96,19 +96,14 @@ function embaralharRespostas() {
 
 
 function buscarIdQuizz(resposta) {
+  let numeroRespostas = [];
   quizzEscolhido = resposta.data;
   console.log(quizzEscolhido);
-
-  /*for(let y = 0; y = quizzEscolhido.questions[y].answers.length;y++){
-    console.log(quizzEscolhido.questions[y].answers[y]);
-  }*/
-
 
   let questoesQuizzes = document.querySelector(".box-questoes");
   let questoesMontadas = "";
 
   questoesQuizzes.innerHTML = "";
-  console.log(questoesQuizzes);
   questoesMontadas = ` 
                                   <div class="titulo-quizz">
                                         <img src="${quizzEscolhido.image}" alt="">
@@ -118,30 +113,29 @@ function buscarIdQuizz(resposta) {
                                 `;
 
   for (let i = 0; i < quizzEscolhido.questions.length; i++) {
-    
-    console.log(quizzEscolhido.questions[i].answers);
     questoesMontadas += `
                                       
-                                              <div class="box-perguntas-respostas">
+                                              <div id="pergunta-${i}" class="box-perguntas-respostas">
                                                   <div class="titulo-pergunta">
-                                                      <span style="color : ${quizzEscolhido.questions[i].color}">
+                                                      <span style="color: ${quizzEscolhido.questions[i].color}">
                                                          ${quizzEscolhido.questions[i].title}
                                                       </span>
                                                   </div>
                                                   <div class="todas-respostas">
                                            `;
-
-        for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++) {
           quizzEscolhido.questions[i].answers.sort(embaralharRespostas);
-          console.log(quizzEscolhido.questions[i].answers[x]);
+
+        for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++){
+          numeroRespostas.push(quizzEscolhido.questions[i].answers[x]);
           questoesMontadas += `
-                                            <div class="box-respostas" onclick="selecionarResposta(this)">
+                                            <div class="box-respostas" data-correct="${quizzEscolhido.questions[i].answers[x].isCorrectAnswer}" onclick="selecionarResposta(this)">
                                                 <img src="${quizzEscolhido.questions[i].answers[x].image}" alt="">
                                                 <span>${quizzEscolhido.questions[i].answers[x].text}</span>
                                             </div>
                                                
                                             `;
         }
+
         questoesMontadas += `
                                        </div> 
                                    </div>     
@@ -150,85 +144,41 @@ function buscarIdQuizz(resposta) {
   questoesMontadas += `
                               </div> 
                                   `;
-
-   questoesQuizzes.innerHTML = questoesMontadas;                                
+  
+   questoesQuizzes.innerHTML = questoesMontadas;                    
 }
 
+function selecionarResposta(escolhida){
+  escolhida.classList.add("escolhido");
 
+  let todasRespostas = escolhida.parentNode.querySelectorAll('.box-respostas');
 
-function selecionarResposta(elemento){
-    console.log("OLAAAAA!"); 
-  /*let respostas = document.querySelector(".box-respostas")*/
-  let respostaSelecionada = elemento.classList.add("box-respostas-esbranquicado");
-  /*respostaSelecionada = elemento.classList*/
- /* if(respostas){
+  for(let i = 0; i<todasRespostas.length; i++){
+    todasRespostas[i].classList.add("box-respostas-desabilitadas");
+    todasRespostas[i].removeAttribute("onclick");
 
-  }*/
-
-
+    if(todasRespostas[i].dataset.correct == 'true'){
+      todasRespostas[i].querySelector('span').classList.add("resposta-correta");
+    }else{
+      todasRespostas[i].querySelector('span').classList.add("resposta-errada");
+    }
+  }  
+  
+  escolhida.classList.remove("box-respostas-desabilitadas");
+  proximaPergunta(escolhida);
 }
+
+function proximaPergunta(escolhida){
+  let perguntaAtual = escolhida.closest(".box-perguntas-respostas");
+  let proximaPergunta = perguntaAtual.nextElementSibling;
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* 
- 
-       questoesQuizzes.innerHTML += `<div class="todas-respostas">
-                                            <div class="box-respostas">
-                                                <img src="${objetoQuizz.questions[i].answers[x].image}" alt="">
-                                                <span>${objetoQuizz.questions[i].answers[x].text}</span>
-                                            </div>
-                                        </div>        
-                                            `;
-        }
-        questoesQuizzes.innerHTML += `
-                                     
-                                   </div>
-                                </div> 
-                                   `;
- 
- 
- 
- 
- for (let i = 0; i < objetoQuizz.questions.answers[i].length; i++) {
-    boxQuestao.innerHTML += `  <div class="box-respostas">
-                                    <img src="${objetoQuizz.questions.answers[i].image}" alt="">
-                                    <span>${objetoQuizz.questions.answers[i].text}</span>
-                                </div>    `;
-    console.log(objetoQuizz.questions.answers[i]);
-    // console.log(objetoQuizz.questions[i].answers.length);
-  }*/
-
-
-
-/*`<div class="box-quetoes-quizzes">
-                                              <div class="box-perguntas-respostas">  
-                                                    <div class="box-respostas">
-                                                            <img src="${objetoQuizz.questions[i].answers[i].image}" alt="">
-                                                            <span>${objetoQuizz.questions[i].answers[i].text}</span>
-                                                    </div>                             
-                                              </div>
-                                      </div>`; */
+  if(proximaPergunta === null){
+    alert("Mostrar resultado");
+  }else{
+    setTimeout(() => {
+      proximaPergunta.scrollIntoView(true);
+    }, 2000);
+  
+  }
+  
+}
