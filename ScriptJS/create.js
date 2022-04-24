@@ -54,7 +54,6 @@ function prosseguir() {
 }
 
 function criarPerguntas() {
-  console.log(informacoes.perguntas);
   let inputs = document.querySelector(".conteudo");
   for (let i = 1; i <= informacoes.perguntas; i++) {
     inputs.innerHTML += ` <div class="inputs">
@@ -69,36 +68,36 @@ function criarPerguntas() {
         placeholder="Texto da pergunta"
       />
       <input
-        class="caixinha"
+        class="caixinha cor"
         type="text"
         placeholder="Cor de fundo da pergunta"
       />
       <div class="tituloInput">Resposta correta</div>
       <input
-        class="caixinha"
+        class="caixinha resposta"
         type="text"
         placeholder="Resposta correta"
       />
-      <input class="caixinha" type="text" placeholder="URL da imagem" />
+      <input class="caixinha url" type="text" placeholder="URL da imagem" />
       <div class="tituloInput">Resposta incorreta</div>
       <input
-        class="caixinha"
+        class="caixinha resposta"
         type="text"
         placeholder="Resposta incorreta 1"
       />
-      <input class="caixinha" type="text" placeholder="URL da imagem 1" />
+      <input class="caixinha url" type="text" placeholder="URL da imagem 1" />
       <input
-        class="caixinha"
+        class="caixinha resposta"
         type="text"
         placeholder="Resposta incorreta 2"
       />
-      <input class="caixinha" type="text" placeholder="URL da imagem 2" />
+      <input class="caixinha url" type="text" placeholder="URL da imagem 2" />
       <input
-        class="caixinha"
+        class="caixinha resposta"
         type="text"
         placeholder="Resposta incorreta 3"
       />
-      <input class="caixinha" type="text" placeholder="URL da imagem 3" />
+      <input class="caixinha url" type="text" placeholder="URL da imagem 3" />
     </div>
   </div> `;
   }
@@ -114,14 +113,52 @@ function mostrarPerguntas(elemento) {
 }
 function requisitoPerguntas() {
     let textoPergunta = document.querySelectorAll(".textoPergunta")
+    let alerts= "entrou"
     for (let i = 0; i<textoPergunta.length; i++){
        let text = textoPergunta[i].value
         if(text.length < 20){
             alert("Preencha os campos corretamente")
+            return alerts
         } 
+        
     }
-    
+    let corFundo = document.querySelectorAll(".cor")
+    for(let i = 0; i<corFundo.length; i++){
+        let cor = corFundo[i].value
+        if(cor[0]!="#" || verificarHexadecimal(cor) == "invalido" || cor.length!=7){
+          alert("Preencha os campos corretamente")
+          return alerts
+        }
+    }
+    let textoResposta = document.querySelectorAll(".resposta")
+    for(let i = 0; i < textoResposta.length; i++){
+      let resposta = textoResposta[i].value
+      if(resposta == ""){
+        alert("Preencha os campos corretamente")
+        return alerts 
+      }
+    }
+    let url = document.querySelectorAll(".url")
+    for(let i = 0; i < url.length; i++){
+      let validurl = url[i].value
+      if(!validURL(validurl)){
+        alert("Preencha os campos corretamente")
+        return alerts
+      }
+    }
+
 }
+function verificarHexadecimal(cor){
+  var re = /[0-9A-Fa-f]{6}/g;
+  
+  if(re.test(cor)) {
+      return "valido"
+  } else {
+      return "invalido"
+  }
+  
+}
+
 function prosseguirNiveis(){
     console.log("birinbau")
     requisitoPerguntas()
