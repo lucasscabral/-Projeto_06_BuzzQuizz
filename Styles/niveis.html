@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/Styles/reset.css" />
+    <link rel="stylesheet" href="/Styles/estilos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="ScriptJS/create.js"></script>
+
+    <title>BuzzQuizz</title>
+  </head>
+  <body>
+    <header>
+      <h1>BuzzQuizz</h1>
+    </header>
+    <div class="container">
+      <div class="subtitulo">
+        <h2>Agora, decida os níveis</h2>
+      </div>
+      <div class="inputs">
+        <div class="prgtIcone">
+          <div class="tituloInput">Nível 1</div>
+          <ion-icon class="icone" name="create-outline"></ion-icon>
+        </div>
+        <div class="informacoes">
+          <input class="caixinha" type="text" placeholder="Título do nível" />
+          <input
+            class="caixinha"
+            type="text"
+            placeholder="% de acerto mínima"
+          />
+          <input
+            class="caixinha"
+            type="text"
+            placeholder="URL da imagem do nível"
+          />
+          <input
+            class="caixinha"
+            type="text"
+            placeholder="Descrição do nível"
+          />
+          <div class="prgtIcone">
+            <div class="tituloInput">Nível 2</div>
+            <ion-icon class="icone" name="create-outline"></ion-icon>
+          </div>
+          <div class="prgtIcone">
+            <div class="tituloInput">Nível 3</div>
+            <ion-icon class="icone" name="create-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="prosseguir">
+        <h3>Proseguir pra criar niveis</h3>
+      </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  </body>
+</html>
