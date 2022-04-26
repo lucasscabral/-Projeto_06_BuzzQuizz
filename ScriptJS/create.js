@@ -322,9 +322,16 @@ function apiQuizz() {
     informacoesApi
   );
   promise.then(telaSucesso);
-
 }
 function telaSucesso(resposta) {
+  let armazenarId = resposta.data.id;
+  let ids = JSON.parse(localStorage.getItem("ids"));
+  if (ids == null) {
+    ids = [armazenarId];
+  } else {
+    ids.push(armazenarId);
+  }
+  localStorage.setItem(JSON.stringify(ids));
   console.log(resposta);
   document.querySelector(".niveis").classList.add("none");
   document.querySelector(".sucesso").classList.remove("none");
@@ -335,9 +342,8 @@ function telaSucesso(resposta) {
   buscarIdQuizz(resposta);
 }
 function acessarQuizz() {
- document.querySelector(".sucesso").classList.add("none")
- document.querySelector(".box-questoes").classList.remove("none")
- 
+  document.querySelector(".sucesso").classList.add("none");
+  document.querySelector(".box-questoes").classList.remove("none");
 }
 function acessarHome() {
   window.location.replace("index.html");
@@ -394,41 +400,40 @@ function buscarIdQuizz(resposta) {
 
   questoesQuizzes.innerHTML = questoesMontadas;
 }
-function embaralharRespostas() { 
-  return Math.random() - 0.5; 
+function embaralharRespostas() {
+  return Math.random() - 0.5;
 }
 
-function selecionarResposta(escolhida){
+function selecionarResposta(escolhida) {
   escolhida.classList.add("escolhido");
 
-  let todasRespostas = escolhida.parentNode.querySelectorAll('.box-respostas');
+  let todasRespostas = escolhida.parentNode.querySelectorAll(".box-respostas");
 
-  for(let i = 0; i<todasRespostas.length; i++){
+  for (let i = 0; i < todasRespostas.length; i++) {
     todasRespostas[i].classList.add("box-respostas-desabilitadas");
     todasRespostas[i].removeAttribute("onclick");
 
-    if(todasRespostas[i].dataset.correct == 'true'){
-      todasRespostas[i].querySelector('span').classList.add("resposta-correta");
-    }else{
-      todasRespostas[i].querySelector('span').classList.add("resposta-errada");
+    if (todasRespostas[i].dataset.correct == "true") {
+      todasRespostas[i].querySelector("span").classList.add("resposta-correta");
+    } else {
+      todasRespostas[i].querySelector("span").classList.add("resposta-errada");
     }
-  }  
-  
+  }
+
   escolhida.classList.remove("box-respostas-desabilitadas");
   proximaPergunta(escolhida);
 }
 
-function proximaPergunta(escolhida){
+function proximaPergunta(escolhida) {
   let perguntaAtual = escolhida.closest(".box-perguntas-respostas");
   let proximaPergunta = perguntaAtual.nextElementSibling;
- 
-  if(proximaPergunta === null){
+
+  if (proximaPergunta === null) {
     alert("Mostrar resultado");
-  }else{
+  } else {
     setTimeout(() => {
       proximaPergunta.scrollIntoView(true);
     }, 2000);
-  
   }
-  
 }
+function armazenarId() {}
