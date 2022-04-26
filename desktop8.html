@@ -86,8 +86,32 @@
         <div class="bottomHome" onclick="acessarHome()">Voltar pra home</div>
       </div>
     </div>
+    <div class="box-quizzes">
+      <div class="box-criar-quizz">
+        <div class="info-criar-quizz">
+          <span>Você não criou nenhum quizz ainda :(</span>
+        </div>
+        <div class="btn-criar-quizz" onclick="buttomCriar()">
+          <span>Criar Quizz</span>
+        </div>
+      </div>
+      <div class="quizzes-criado-pelo-usuario escondido">
+        <div class="titulo-todos-quizzes-usuario">
+          <h2>Seus Quizzes</h2>
+          <ion-icon onclick="buttomCriar()"
+            name="add-circle-outline"
+            class="icone-criar-quizz"
+          ></ion-icon>
+        </div>
+        <div class="todos-quizzes-usuario"></div>
+      </div>
+      <div class="titulo-todos-quizzes">
+        <h2>Todos os Quizzes</h2>
+      </div>
+      <div class="todos-quizzes-api"></div>
+    </div>
     <!--boxQuestoes-->
-    <div class="box-questoes none">
+    <div class="box-questoes escondido">
       <div class="titulo-quizz"></div>
       <div class="box-questoes-quizzes">
         <div class="box-perguntas-respostas"></div>
