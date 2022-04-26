@@ -2,6 +2,7 @@ let quizzesDaApi;
 let idQUizz;
 let totalAcertos = 0;
 
+aparecerSeusQuizz()
 quizzesApi();
 function quizzesApi() {
   promiseQuizzes = axios.get(
@@ -31,9 +32,12 @@ function buttomCriar() {
 }
 
 function entrarQuizzApi(elemento) {
-
-  const conteudoQuizzes = document.querySelector(".box-quizzes").classList.add("escondido");
-  const aparecerTelaQuizz = document.querySelector(".box-questoes").classList.remove("escondido");
+  const conteudoQuizzes = document
+    .querySelector(".box-quizzes")
+    .classList.add("escondido");
+  const aparecerTelaQuizz = document
+    .querySelector(".box-questoes")
+    .classList.remove("escondido");
 
   const scrollarProTopo = document.querySelector("body");
   scrollarProTopo.scrollIntoView(true);
@@ -46,8 +50,8 @@ function entrarQuizzApi(elemento) {
 
 let quizzEscolhido;
 
-function embaralharRespostas() { 
-  return Math.random() - 0.5; 
+function embaralharRespostas() {
+  return Math.random() - 0.5;
 }
 
 function buscarIdQuizz(resposta) {
@@ -76,19 +80,19 @@ function buscarIdQuizz(resposta) {
                                                   </div>
                                                   <div class="todas-respostas">
                                            `;
-          quizzEscolhido.questions[i].answers.sort(embaralharRespostas);
+    quizzEscolhido.questions[i].answers.sort(embaralharRespostas);
 
-        for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++){
-          questoesMontadas += `
+    for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++) {
+      questoesMontadas += `
                                             <div class="box-respostas" data-correct="${quizzEscolhido.questions[i].answers[x].isCorrectAnswer}" onclick="selecionarResposta(this)">
                                                 <img src="${quizzEscolhido.questions[i].answers[x].image}" alt="">
                                                 <span>${quizzEscolhido.questions[i].answers[x].text}</span>
                                             </div>
                                                
                                             `;
-        }
+    }
 
-        questoesMontadas += `
+    questoesMontadas += `
                                        </div> 
                                    </div>     
                                   `;
@@ -96,49 +100,47 @@ function buscarIdQuizz(resposta) {
   questoesMontadas += `
                               </div> 
                                   `;
-  
-   questoesQuizzes.innerHTML = questoesMontadas;                  
+
+  questoesQuizzes.innerHTML = questoesMontadas;
 }
 
-function selecionarResposta(escolhida){
+function selecionarResposta(escolhida) {
   escolhida.classList.add("escolhido");
 
-  let todasRespostas = escolhida.parentNode.querySelectorAll('.box-respostas');
+  let todasRespostas = escolhida.parentNode.querySelectorAll(".box-respostas");
   let respostaCorreta = escolhida.dataset.correct;
 
-  if(respostaCorreta == 'true'){
+  if (respostaCorreta == "true") {
     totalAcertos++;
   }
 
-  for(let i = 0; i<todasRespostas.length; i++){
+  for (let i = 0; i < todasRespostas.length; i++) {
     todasRespostas[i].classList.add("box-respostas-desabilitadas");
     todasRespostas[i].removeAttribute("onclick");
 
-    if(todasRespostas[i].dataset.correct == 'true'){
-      todasRespostas[i].querySelector('span').classList.add("resposta-correta");
-    }else{
-      todasRespostas[i].querySelector('span').classList.add("resposta-errada");
+    if (todasRespostas[i].dataset.correct == "true") {
+      todasRespostas[i].querySelector("span").classList.add("resposta-correta");
+    } else {
+      todasRespostas[i].querySelector("span").classList.add("resposta-errada");
     }
-  }  
-  
+  }
+
   escolhida.classList.remove("box-respostas-desabilitadas");
-  
+
   proximaPergunta(escolhida);
 }
 
-function proximaPergunta(escolhida){
+function proximaPergunta(escolhida) {
   let perguntaAtual = escolhida.closest(".box-perguntas-respostas");
   let proximaPergunta = perguntaAtual.nextElementSibling;
- 
-  if(proximaPergunta === null){
+
+  if (proximaPergunta === null) {
     setTimeout(mostrarResultado, 2000);
-  }else{
+  } else {
     setTimeout(() => {
-      proximaPergunta.scrollIntoView(
-        {
-          behavior: 'smooth'
-        }
-      );
+      proximaPergunta.scrollIntoView({
+        behavior: "smooth",
+      });
     }, 2000);
   }
 }
@@ -147,34 +149,36 @@ function proximaPergunta(escolhida){
  * funcao criada pois alguns levels de quizzes nao estavam cadastrados com o minValue na ordem crescente
  * e essa funcao ajuda a comparar o valor de forma mais precisa e mostrar o resultado correto
  */
-function ordenarPorValorLevel(a, b){
+function ordenarPorValorLevel(a, b) {
   return a.minValue - b.minValue;
 }
 
-function mostrarResultado(){
-  let porcentagemDeAcertos = Math.round((totalAcertos * 100) / quizzEscolhido.questions.length) ;
+function mostrarResultado() {
+  let porcentagemDeAcertos = Math.round(
+    (totalAcertos * 100) / quizzEscolhido.questions.length
+  );
   let resultadoBox = document.querySelector(".box-questoes-quizzes");
 
   let resultado = {};
   let levels = [];
 
-  for(let i = 0; i<quizzEscolhido.levels.length; i++){
+  for (let i = 0; i < quizzEscolhido.levels.length; i++) {
     levels.push(quizzEscolhido.levels[i]);
   }
 
   levels.sort(ordenarPorValorLevel);
-  
-  for(let i = 0; i<levels.length; i++){
-    if(porcentagemDeAcertos >= levels[i].minValue){
-        resultado = {
-          title: levels[i].title,
-          image: levels[i].image,
-          text: levels[i].text
-        };
+
+  for (let i = 0; i < levels.length; i++) {
+    if (porcentagemDeAcertos >= levels[i].minValue) {
+      resultado = {
+        title: levels[i].title,
+        image: levels[i].image,
+        text: levels[i].text,
+      };
     }
   }
 
-  resultadoBox.innerHTML +=`  <div class="box-resultado-quizz">
+  resultadoBox.innerHTML += `  <div class="box-resultado-quizz">
                                         <div class="titulo-resultado">
                                             <span>${porcentagemDeAcertos}% de acerto: ${resultado.title}</span>
                                         </div>
@@ -194,19 +198,45 @@ function mostrarResultado(){
                                 <span>Voltar pra home</span>
                               </div>`;
 
-
   let tabelaResultado = document.querySelector(".box-resultado-quizz");
-  tabelaResultado.scrollIntoView(
-    {
-      behavior: 'smooth'
-    })
+  tabelaResultado.scrollIntoView({
+    behavior: "smooth",
+  });
 }
 
-function reiniciarJogo(){
+function reiniciarJogo() {
   totalAcertos = 0;
   entrarQuizzApi(quizzEscolhido);
 }
 
-function voltarHome(){
+function voltarHome() {
   window.location.reload();
 }
+function aparecerSeusQuizz() {
+  let ids = JSON.parse(localStorage.getItem("ids"));
+  if (ids != null) {
+    document
+      .querySelector(".quizzes-criado-pelo-usuario")
+      .classList.remove("escondido");
+    document.querySelector(".box-criar-quizz").classList.add("escondido");
+    for (let i = 0; i < ids.length; i++) {
+      let id = ids[i];
+      let promessa = axios.get(
+        `https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`
+      );
+      promessa.then(seusQuizz);
+    }
+  }
+}
+
+function seusQuizz(resposta) {
+  let informacoes = document.querySelector(".todos-quizzes-usuario");
+  informacoes.innerHTML += `<div class="quizzes" onclick="entrarQuizzApi(this)" id=${resposta.data.id}>
+<div class="imagem-quizz">
+    <img src="${resposta.data.image}" alt="Quizzes">
+    <span>${resposta.data.title}</span>
+</div>   
+</div>`;
+
+}
+

@@ -331,7 +331,7 @@ function telaSucesso(resposta) {
   } else {
     ids.push(armazenarId);
   }
-  localStorage.setItem(JSON.stringify(ids));
+  localStorage.setItem("ids",JSON.stringify(ids));
   console.log(resposta);
   document.querySelector(".niveis").classList.add("none");
   document.querySelector(".sucesso").classList.remove("none");
@@ -565,4 +565,4 @@ function reiniciarJogo() {
 function voltarHome() {
   window.location.reload();
 }
-function armazenarId() {}
+
