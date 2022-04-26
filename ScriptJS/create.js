@@ -59,7 +59,7 @@ function criarPerguntas() {
       <div class="tituloInput">Pergunta ${i}</div>
       <ion-icon class="icone" name="create-outline"></ion-icon>
     </div>
-    <div class="none informacoes">
+    <div class="none informacoes perguntas">
       <input
         class="caixinha textoPergunta"
         type="text"
@@ -72,26 +72,26 @@ function criarPerguntas() {
       />
       <div class="tituloInput">Resposta correta</div>
       <input
-        class="caixinha resposta"
+        class="caixinha resposta correta"
         type="text"
         placeholder="Resposta correta"
       />
       <input class="caixinha url" type="text" placeholder="URL da imagem" />
       <div class="tituloInput">Resposta incorreta</div>
       <input
-        class="caixinha resposta"
+        class="caixinha resposta incorreta"
         type="text"
         placeholder="Resposta incorreta 1"
       />
       <input class="caixinha url" type="text" placeholder="URL da imagem 1" />
       <input
-        class="caixinha resposta"
+        class="caixinha resposta incorreta"
         type="text"
         placeholder="Resposta incorreta 2"
       />
       <input class="caixinha url" type="text" placeholder="URL da imagem 2" />
       <input
-        class="caixinha resposta"
+        class="caixinha resposta incorreta"
         type="text"
         placeholder="Resposta incorreta 3"
       />
@@ -177,7 +177,7 @@ function mostrarNiveis() {
       <div class="tituloInput">Nível ${i}</div>
       <ion-icon class="icone" name="create-outline"></ion-icon>
     </div>
-    <div class="informacoes none">
+    <div class="informacoes none levels">
       <input class="caixinha tituloNivel" type="text" placeholder="Título do nível" />
       <input
         class="caixinha porcentagem"
@@ -217,20 +217,20 @@ function requisitosNiveis() {
     }
   }
   let porcentagem = document.querySelectorAll(".porcentagem");
-  let deu0 = "0"
+  let deu0 = "0";
   for (let i = 0; i < porcentagem.length; i++) {
     let porcento = porcentagem[i].value;
-    if (parseInt(porcento) < 0 || parseInt(porcento) > 100 || porcento == "" ) {
+    if (parseInt(porcento) < 0 || parseInt(porcento) > 100 || porcento == "") {
       alert("Preencha os campos corretamente");
       return alerts;
     }
-    if(parseInt(porcento) == 0){
-      deu0 = ""
+    if (parseInt(porcento) == 0) {
+      deu0 = "";
     }
   }
-  if(deu0 == "0"){
-    alert("Preencha os campos corretamente")
-    return alerts
+  if (deu0 == "0") {
+    alert("Preencha os campos corretamente");
+    return alerts;
   }
   let url = document.querySelectorAll(".url");
   for (let i = 0; i < url.length; i++) {
@@ -239,7 +239,6 @@ function requisitosNiveis() {
       alert("Preencha os campos corretamente");
       return alerts;
     }
-    
   }
   let descricao = document.querySelectorAll(".descricao");
   for (let i = 0; i < descricao.length; i++) {
@@ -249,9 +248,187 @@ function requisitosNiveis() {
       return alerts;
     }
   }
+}
+function sucessoDoQuizz() {
+  let alertaa = requisitosNiveis();
+  if (alertaa != "entrou") {
+    apiQuizz();
+  }
+  console.log("birinbau");
+}
+function apiQuizz() {
+  let perguntas = document.querySelectorAll(".perguntas");
+  let array = [];
+  for (let i = 0; i < informacoes.perguntas; i++) {
+    let cor = perguntas[i].querySelector(".cor");
+    let respostaCorretas = perguntas[i].querySelector(".correta");
+    let respostaIncorretas = perguntas[i].querySelectorAll(".incorreta");
+    let url = perguntas[i].querySelectorAll(".url");
+    let titulo = perguntas[i].querySelector(".textoPergunta");
+
+    let objetoApi = {
+      title: titulo.value,
+      color: cor.value,
+      answers: [
+        {
+          text: respostaCorretas.value,
+          image: url[0].value,
+          isCorrectAnswer: true,
+        },
+        {
+          text: respostaIncorretas[0].value,
+          image: url[1].value,
+          isCorrectAnswer: false,
+        },
+        {
+          text: respostaIncorretas[1].value,
+          image: url[2].value,
+          isCorrectAnswer: false,
+        },
+        {
+          text: respostaIncorretas[2].value,
+          image: url[3].value,
+          isCorrectAnswer: false,
+        },
+      ],
+    };
+    array.push(objetoApi);
+  }
+  let levels = document.querySelectorAll(".levels");
+  let arraay = [];
+  for (let i = 0; i < informacoes.niveis; i++) {
+    let tituloNivel = levels[i].querySelector(".tituloNivel");
+    let porcentagem = levels[i].querySelector(".porcentagem");
+    let url = levels[i].querySelector(".url");
+    let descricao = levels[i].querySelector(".descricao");
+    let niveisApi = {
+      title: tituloNivel.value,
+      image: url.value,
+      text: descricao.value,
+      minValue: porcentagem.value,
+    };
+    arraay.push(niveisApi);
+  }
+
+  let informacoesApi = {
+    title: informacoes.titulo,
+    image: informacoes.url,
+    questions: array,
+    levels: arraay,
+  };
+  console.log(informacoesApi);
+  let promise = axios.post(
+    "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes",
+    informacoesApi
+  );
+  promise.then(telaSucesso);
 
 }
-function sucessoDoQuizz(){
-  requisitosNiveis()
-  console.log("birinbau")
+function telaSucesso(resposta) {
+  console.log(resposta);
+  document.querySelector(".niveis").classList.add("none");
+  document.querySelector(".sucesso").classList.remove("none");
+  let imagemUrl = document.querySelector(".imagemTitulo");
+  let titulo = document.querySelector(".tituloo");
+  imagemUrl.style.backgroundImage = `url(${informacoes.url})`;
+  titulo.innerHTML = informacoes.titulo;
+  buscarIdQuizz(resposta);
+}
+function acessarQuizz() {
+ document.querySelector(".sucesso").classList.add("none")
+ document.querySelector(".box-questoes").classList.remove("none")
+ 
+}
+function acessarHome() {
+  window.location.replace("index.html");
+}
+function buscarIdQuizz(resposta) {
+  let numeroRespostas = [];
+  quizzEscolhido = resposta.data;
+  console.log(quizzEscolhido);
+
+  let questoesQuizzes = document.querySelector(".box-questoes");
+  let questoesMontadas = "";
+
+  questoesQuizzes.innerHTML = "";
+  questoesMontadas = ` 
+                                  <div class="titulo-quizz">
+                                        <img src="${quizzEscolhido.image}" alt="">
+                                        <span>${quizzEscolhido.title}</span>
+                                  </div>
+                                  <div class="box-questoes-quizzes">
+                                `;
+
+  for (let i = 0; i < quizzEscolhido.questions.length; i++) {
+    questoesMontadas += `
+                                      
+                                              <div id="pergunta-${i}" class="box-perguntas-respostas">
+                                                  <div class="titulo-pergunta">
+                                                      <span style="color: ${quizzEscolhido.questions[i].color}">
+                                                         ${quizzEscolhido.questions[i].title}
+                                                      </span>
+                                                  </div>
+                                                  <div class="todas-respostas">
+                                           `;
+    quizzEscolhido.questions[i].answers.sort(embaralharRespostas);
+
+    for (let x = 0; x < quizzEscolhido.questions[i].answers.length; x++) {
+      numeroRespostas.push(quizzEscolhido.questions[i].answers[x]);
+      questoesMontadas += `
+                                            <div class="box-respostas" data-correct="${quizzEscolhido.questions[i].answers[x].isCorrectAnswer}" onclick="selecionarResposta(this)">
+                                                <img src="${quizzEscolhido.questions[i].answers[x].image}" alt="">
+                                                <span>${quizzEscolhido.questions[i].answers[x].text}</span>
+                                            </div>
+                                               
+                                            `;
+    }
+
+    questoesMontadas += `
+                                       </div> 
+                                   </div>     
+                                  `;
+  }
+  questoesMontadas += `
+                              </div> 
+                                  `;
+
+  questoesQuizzes.innerHTML = questoesMontadas;
+}
+function embaralharRespostas() { 
+  return Math.random() - 0.5; 
+}
+
+function selecionarResposta(escolhida){
+  escolhida.classList.add("escolhido");
+
+  let todasRespostas = escolhida.parentNode.querySelectorAll('.box-respostas');
+
+  for(let i = 0; i<todasRespostas.length; i++){
+    todasRespostas[i].classList.add("box-respostas-desabilitadas");
+    todasRespostas[i].removeAttribute("onclick");
+
+    if(todasRespostas[i].dataset.correct == 'true'){
+      todasRespostas[i].querySelector('span').classList.add("resposta-correta");
+    }else{
+      todasRespostas[i].querySelector('span').classList.add("resposta-errada");
+    }
+  }  
+  
+  escolhida.classList.remove("box-respostas-desabilitadas");
+  proximaPergunta(escolhida);
+}
+
+function proximaPergunta(escolhida){
+  let perguntaAtual = escolhida.closest(".box-perguntas-respostas");
+  let proximaPergunta = perguntaAtual.nextElementSibling;
+ 
+  if(proximaPergunta === null){
+    alert("Mostrar resultado");
+  }else{
+    setTimeout(() => {
+      proximaPergunta.scrollIntoView(true);
+    }, 2000);
+  
+  }
+  
 }
