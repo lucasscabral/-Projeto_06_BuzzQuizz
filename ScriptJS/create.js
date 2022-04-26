@@ -397,3 +397,38 @@ function buscarIdQuizz(resposta) {
 function embaralharRespostas() { 
   return Math.random() - 0.5; 
 }
+
+function selecionarResposta(escolhida){
+  escolhida.classList.add("escolhido");
+
+  let todasRespostas = escolhida.parentNode.querySelectorAll('.box-respostas');
+
+  for(let i = 0; i<todasRespostas.length; i++){
+    todasRespostas[i].classList.add("box-respostas-desabilitadas");
+    todasRespostas[i].removeAttribute("onclick");
+
+    if(todasRespostas[i].dataset.correct == 'true'){
+      todasRespostas[i].querySelector('span').classList.add("resposta-correta");
+    }else{
+      todasRespostas[i].querySelector('span').classList.add("resposta-errada");
+    }
+  }  
+  
+  escolhida.classList.remove("box-respostas-desabilitadas");
+  proximaPergunta(escolhida);
+}
+
+function proximaPergunta(escolhida){
+  let perguntaAtual = escolhida.closest(".box-perguntas-respostas");
+  let proximaPergunta = perguntaAtual.nextElementSibling;
+ 
+  if(proximaPergunta === null){
+    alert("Mostrar resultado");
+  }else{
+    setTimeout(() => {
+      proximaPergunta.scrollIntoView(true);
+    }, 2000);
+  
+  }
+  
+}
