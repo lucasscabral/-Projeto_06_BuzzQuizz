@@ -61,16 +61,56 @@
       </div>
     </div>
     <!-- desktop10-->
-    <div class="container none">
+    <div class="container none niveis">
       <div class="subtitulo">
         <h2>Agora, decida os níveis</h2>
       </div>
-      <div class="conteudo nivel container">
-       
+      <div class="conteudo nivel container"></div>
+
+      <div class="prosseguir" onclick="apiQuizz()">
+        <h3>Finalizar Quizz</h3>
+      </div>
+    </div>
+    <!-- telaDeSucesso-->
+    <div class="container sucesso none">
+      <div class="subtitulo">
+        <h2>Seu quizz está pronto!</h2>
+      </div>
+      <div class="imagemTitulo">
+        <h4 class="tituloo"></h4>
       </div>
 
-      <div class="prosseguir " onclick="sucessoDoQuizz()">
-        <h3>Finalizar Quizz</h3>
+      <div class="prosseguir comSucesso" onclick="acessarQuizz()">
+        <h3>Acessar Quizz</h3>
+      </div>
+      <div class="voltar">
+        <div class="bottomHome" onclick="acessarHome()">Voltar pra home</div>
+      </div>
+    </div>
+    <!--boxQuestoes-->
+    <div class="box-questoes none">
+      <div class="titulo-quizz"></div>
+      <div class="box-questoes-quizzes">
+        <div class="box-perguntas-respostas"></div>
+        <div class="box-resultado-quizz">
+          <!--<div class="titulo-resultado">
+                  <span>88% de acerto: Você é praticamente um aluno de Hogwarts!</span>
+              </div>
+              <div class="conteudo-resultado">
+                  <div class="box-resultado-img">
+                      <img src="/Imagens/corinthians2.jpg" alt="">
+                  </div>
+                  <div class="box-descricao-resultado">
+                      <span>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+                  </div>
+              </div>-->
+        </div>
+        <div class="bnt-reiniciar-quizz">
+          <!--<span>Reiniciar Quizz</span>-->
+        </div>
+        <div class="bnt-voltar-home">
+          <!-- <span>Voltar pra home</span>-->
+        </div>
       </div>
     </div>
 
